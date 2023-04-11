@@ -20,7 +20,7 @@ typedef struct Queue
 // 初始化
 void QueueInit(Queue* pq);
 // 销毁
-void QueueDestory(Queue* pq);
+void QueueDestroy(Queue* pq);
 // 队尾入
 void QueuePush(Queue* pq, QDataType x);
 // 队头出
@@ -41,7 +41,7 @@ void QueueInit(Queue* pq)
 }
 
 
-void QueueDestory(Queue* pq)
+void QueueDestroy(Queue* pq)
 {
 	assert(pq);
 
