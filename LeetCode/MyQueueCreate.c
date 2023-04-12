@@ -2,8 +2,8 @@
 #include "Stack.h"
 typedef struct
 {
-    ST s1;
-    ST s2;
+    ST s1; // 用于入队
+    ST s2; // 用于出队
 } MyQueue;
 
 MyQueue *myQueueCreate()
@@ -23,74 +23,38 @@ MyQueue *myQueueCreate()
 
 void myQueuePush(MyQueue *obj, int x)
 {
-    ST *emptyStack = &obj->s1;
-    ST *nonemptyStack = &obj->s2;
 
-    if (!StackEmpty(&obj->s1))
-    {
-        emptyStack = &obj->s2;
-        nonemptyStack = &obj->s1;
-    }
-    else
-    {
-        StackPush(nonemptyStack, x);
-    }
+    StackPush(&obj->s1, x);
 }
 
 int myQueuePop(MyQueue *obj)
 {
-    ST *emptyStack = &obj->s1;
-    ST *nonemptyStack = &obj->s2;
-    int top;
-    if (!StackEmpty(&obj->s1))
-    {
-        emptyStack = &obj->s2;
-        nonemptyStack = &obj->s1;
-    }
-    else
-    {
-        while (StackSize(nonemptyStack) > 1)
-        {
-            StackPush(emptyStack, StackTop(nonemptyStack));
-            StackPop(nonemptyStack);
-        }
-        top = StackTop(nonemptyStack);
 
-        StackPop(nonemptyStack);
-        while (StackSize(emptyStack) > 0)
+    if (StackEmpty(&obj->s2))
+    {
+        while (!StackEmpty(&obj->s1))
         {
-            StackPush(nonemptyStack, StackTop(emptyStack));
-            StackPop(emptyStack);
+            StackPush(&obj->s2, StackTop(&obj->s1));
+            StackPop(&obj->s1);
         }
     }
-    return top;
+    int x = StackTop(&obj->s2);
+    StackPop(&obj->s2);
+    return x;
 }
 
 int myQueuePeek(MyQueue *obj)
 {
-    ST *emptyStack = &obj->s1;
-    ST *nonemptyStack = &obj->s2;
-    int top;
-    if (!StackEmpty(&obj->s1))
+
+    if (StackEmpty(&obj->s2))
     {
-        emptyStack = &obj->s2;
-        nonemptyStack = &obj->s1;
-    }
-    else
-    {
-        while (StackSize(nonemptyStack) > 1)
+        while (!StackEmpty(&obj->s1))
         {
-            StackPush(emptyStack, StackTop(nonemptyStack));
-            StackPop(nonemptyStack);
-        }
-        top = StackTop(nonemptyStack);
-        while (StackSize(emptyStack) > 0)
-        {
-            StackPush(nonemptyStack, StackTop(emptyStack));
-            StackPop(emptyStack);
+            StackPush(&obj->s2, StackTop(&obj->s1));
+            StackPop(&obj->s1);
         }
     }
-    return top;
+    return StackTop(&obj->s2);
 }
 
 bool myQueueEmpty(MyQueue *obj)
@@ -110,7 +74,7 @@ int main()
 {
     MyQueue *myQueue = myQueueCreate();
     myQueuePush(myQueue, 1);
-
+    myQueuePush(myQueue, 3);
     printf("%d\n", myQueuePop(myQueue));
     printf("%d\n", myQueueEmpty(myQueue));
     return 0;
