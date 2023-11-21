@@ -1,4 +1,4 @@
 *.exe
 .vscode
-Test
+util
 Main.java
