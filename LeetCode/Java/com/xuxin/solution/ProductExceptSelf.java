@@ -1,7 +1,5 @@
 package com.xuxin.solution;
 
-import java.util.Arrays;
-
 public class ProductExceptSelf {
     public int[] productExceptSelf(int[] nums) {
 
@@ -48,4 +46,5 @@ public class ProductExceptSelf {
         }
         return answer;
     }
+
 }
