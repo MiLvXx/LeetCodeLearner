@@ -17,10 +17,4 @@ public class SummaryRanges {
         }
         return res;
     }
-
-    public static void main(String[] args) {
-        new SummaryRanges()
-                .summaryRanges(new int[] {})
-                .forEach(ele -> System.out.println(ele));
-    }
 }
