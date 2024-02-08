@@ -1,18 +1,10 @@
 package com.xuxin.solution;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 public class FindMinArrowShots {
     public int findMinArrowShots(int[][] points) {
-        Arrays.sort(points, new Comparator<int[]>() {
-
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return o1[0] > o2[0] ? 1 : (o1[0] == o2[0] ? 0 : -1);
-            }
-
-        });
+        Arrays.sort(points, (a, b) -> Integer.compare(a[0], b[0]));
         int[] tmpInterval = points[0];
         int res = 1;
         for (int i = 1; i < points.length; i++) {
