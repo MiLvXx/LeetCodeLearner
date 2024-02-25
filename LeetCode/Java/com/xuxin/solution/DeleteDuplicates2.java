@@ -7,7 +7,7 @@ public class DeleteDuplicates2 {
         if (head == null) {
             return head;
         }
-        ListNode next = head.next, post = new ListNode(-101), ppre = post;
+        ListNode next = head.next, post = new ListNode(-101), pre = post;
         post.next = head;
         while (next != null) {
             if (head.val == next.val) {
@@ -17,19 +17,19 @@ public class DeleteDuplicates2 {
                 next = head.next;
             } else {
                 if (head.val == post.val) {
-                    ppre.next = next;
+                    pre.next = next;
                     head.next = null;
-                    head = ppre.next;
+                    head = pre.next;
                     next = head.next;
                 } else {
                     head = head.next;
                     next = next.next;
-                    ppre = ppre.next;
+                    pre = pre.next;
                 }
             }
         }
         if (head.val == post.val) {
-            ppre.next = next;
+            pre.next = next;
         }
         return post.next;
     }
