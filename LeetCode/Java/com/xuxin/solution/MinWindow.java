@@ -11,7 +11,7 @@ public class MinWindow {
         while (tail < s.length()) {
             if (--hashTable[s.charAt(tail)] >= 0) {
                 if (--cnt == 0) {
-                    while (hashTable[s.charAt(head++)]++ != 0) {
+                    while (hashTable[s.charAt(head)] != 0) {
                         hashTable[s.charAt(head)]++;
                         head++;
                     }
