@@ -10,16 +10,17 @@ public class DecodeString {
         for (char c : s.toCharArray()) {
             if (c == ']') {
                 Character a;
-                StringBuilder sb = new StringBuilder(), countBuffer = new StringBuilder();
-                StringBuffer charBuffer = new StringBuffer();
+                StringBuilder sb = new StringBuilder(),
+                        cntB = new StringBuilder(),
+                        charB = new StringBuilder();
                 while ((a = stack.removeLast()) != '[') {
-                    charBuffer.append(a);
+                    charB.append(a);
                 }
                 while (!stack.isEmpty() && Character.isDigit(stack.peekLast())) {
-                    countBuffer.append(stack.removeLast());
+                    cntB.append(stack.removeLast());
                 }
-                int count = Integer.valueOf(countBuffer.reverse().toString());
-                String str = charBuffer.reverse().toString();
+                int count = Integer.valueOf(cntB.reverse().toString());
+                String str = charB.reverse().toString();
                 for (int i = 0; i < count; i++) {
                     sb.append(str);
                 }
@@ -34,10 +35,5 @@ public class DecodeString {
             ans.append(stack.removeFirst());
         }
         return ans.toString();
-    }
-
-    public static void main(String[] args) {
-        String s = "100[leetcode]";
-        System.out.println(new DecodeString().decodeString(s));
     }
 }
