@@ -21,12 +21,9 @@ public class SearchMatrix {
 
         for (int i = 0; i < matrix.length; i++) {
             int[] row = matrix[i];
-            if (target > row[row.length-1]) {
-                continue;
-            }
-            if (target < row[0]) {
-                return false;
-            }
+            if (target > row[row.length-1]) continue;
+            if (target < row[0]) return false;
+            
             int left = 0, right = row.length-1;
             while (left <= right) {
                 int mid = left + (right-left)/2;
@@ -40,8 +37,5 @@ public class SearchMatrix {
             }
         }
         return false;
-    }
-    public static void main(String[] args) {
-        new SearchMatrix().searchMatrix(new int[][]{{1}, {3}}, 3);
     }
 }
