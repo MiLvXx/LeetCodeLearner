@@ -1,6 +1,11 @@
-# LeetCodeLearner
-记录一个萌新的力扣刷题过程。
-## 1.使用C完成的部分题目 
-由于作者还不会使用CMake工具，目录有些杂乱
-## 2.Java阶段 (**2023/11/20**)
-当前使用Java语言进行解题
+# LeetCode-Learner
+记录一个萌新的力扣刷题过程<br>
+当前使用 ***Java*** 进行解题
+## C
+- Since: 2023/04/09
+- Dir: Leetcode/C
+
+## Java
+- Since: 2023/11/20
+- Dir: Leetcode/Java
+
