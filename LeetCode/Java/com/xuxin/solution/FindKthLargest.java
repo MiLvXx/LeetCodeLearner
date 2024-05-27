@@ -6,41 +6,40 @@ package com.xuxin.solution;
  *               空间复杂度: O(log n)
  */
 public class FindKthLargest {
+    public int findKthLargest(int[] nums, int k) {
+        int n = nums.length;
+        return quickSelect(nums, 0, n - 1, n - k); // n-k即为 target_index
+    }
+
     private int quickSelect(int[] nums, int l, int r, int k) {
-        if (l == r) {
+        if (l == r)
             return nums[k];
-        }
-        int x = nums[l], i = l - 1, j = r + 1;
+
+        int pivot = nums[l], i = l - 1, j = r + 1;
         while (i < j) {
             do
                 i++;
-            while (nums[i] < x);
+            while (nums[i] < pivot);
 
             do
                 j--;
-            while (nums[j] > x);
+            while (nums[j] > pivot);
 
-            if (i < j) {
-                int tmp = nums[i];
-                nums[i] = nums[j];
-                nums[j] = tmp;
-            }
+            if (i < j)
+                swap(nums, j, i);
         }
-        if (k <= j) {
+
+        if (k <= j)
             return quickSelect(nums, l, j, k);
-        } else {
+        else
             return quickSelect(nums, j + 1, r, k);
-        }
+
     }
 
-    public int findKthLargest(int[] nums, int k) {
-        int n = nums.length;
-        return quickSelect(nums, 0, n - 1, n - k); // n-k即为target
+    private void swap(int[] nums, int lo, int hi) {
+        int temp = nums[lo];
+        nums[lo] = nums[hi];
+        nums[hi] = temp;
     }
 
-    public static void main(String[] args) {
-        var nums = new int[] { 1, 5, 4, 3, 2 };
-        var ans = new FindKthLargest().findKthLargest(nums, 3);
-        System.out.println(ans);
-    }
 }
